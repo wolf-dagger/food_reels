@@ -25,7 +25,7 @@ async function registerUser(req, res) {
     {
       id: user._id,
     },
-    "25c6649b8f9911b51d40e9680af27bdfbc1fa57e344bf453ae03d49df8f74aa4",
+    process.env.JWT_SECRET,
   );
 
   res.cookie("token", token);
@@ -40,6 +40,45 @@ async function registerUser(req, res) {
   });
 }
 
+async function loginUser(req, res) {
+  const { email, password } = req.body;
+
+  const user = await userModel.findOne({ email });
+
+  if (!user) {
+    return res.status(400).json({
+      message: "Invalid email or password",
+    });
+  }
+
+  const isPasswordValid = await bcrypt.compare(password, user.password);
+
+  if (!isPasswordValid) {
+    return res.status(400).json({
+      message: "Invalid email or password",
+    });
+  }
+
+  const token = jwt.sign(
+    {
+      id: user._id,
+    },
+    process.env.JWT_SECRET,
+  );
+
+  res.cookie("token", token);
+
+  res.status(200).json({
+    message: "User logged in successfully",
+    user: {
+      _id: user._id,
+      email: user.email,
+      fullName: user.fullName,
+    },
+  });
+}
+
 module.exports = {
   registerUser,
+  loginUser,
 };
