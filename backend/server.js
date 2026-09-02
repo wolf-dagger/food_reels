@@ -7,4 +7,6 @@ const connectDB = require("./src/db/db");
 connectDB();
 
 // start listning server
-app.listen(3000, () => console.log("Listening on port 3000"));
+const server = app.listen(3000, () => console.log("Listening on port 3000"));
+server.timeout = 300000; // 5 minutes for large uploads
+server.keepAliveTimeout = 65000;

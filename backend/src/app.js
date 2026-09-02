@@ -3,6 +3,7 @@
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const authRoutes = require("./routes/auth.routes");
+const foodRoutes = require("./routes/food.routes");
 
 const app = express();
 
@@ -18,5 +19,16 @@ app.get("/", (req, res) => {
 
 // authentication routes
 app.use("/api/auth", authRoutes);
+
+// food routes
+app.use("/api/food", foodRoutes);
+
+app.use((err, req, res, next) => {
+  console.error(err);
+  if (err.code === "LIMIT_FILE_SIZE") {
+    return res.status(413).json({ message: "File too large" });
+  }
+  res.status(500).json({ message: err.message || "Internal server error" });
+});
 
 module.exports = app;
