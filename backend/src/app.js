@@ -16,6 +16,7 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
+// authentication routes
 app.use("/api/auth", authRoutes);
 
 module.exports = app;
