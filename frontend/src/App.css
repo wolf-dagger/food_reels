@@ -1,0 +1,371 @@
+@import "./theme.css";
+
+* {
+  margin: 0%;
+  padding: 0%;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+}
+
+body {
+  min-width: 320px;
+}
+
+a {
+  color: var(--color-accent-strong);
+  text-decoration: none;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.top-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 4.5rem;
+  padding: 0.75rem clamp(1.5rem, 5vw, 5.5rem);
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.brand-dark {
+  color: var(--color-text);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.nav-link,
+.theme-toggle {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid transparent;
+  border-radius: 0.3rem;
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.nav-link:hover,
+.nav-link.is-active {
+  background: var(--color-accent-soft);
+  color: var(--color-accent-strong);
+}
+
+.theme-toggle {
+  margin-left: 0.5rem;
+  border-color: var(--color-border);
+  color: var(--color-text);
+}
+
+.theme-toggle:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent-strong);
+}
+
+.auth-shell {
+  display: grid;
+  grid-template-columns: minmax(320px, 0.9fr) minmax(420px, 1.1fr);
+  min-height: calc(100vh - 4.5rem);
+}
+
+.auth-intro {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(2rem, 6vw, 5.5rem);
+  background: var(--color-accent);
+  color: var(--color-accent-contrast);
+  position: relative;
+  overflow: hidden;
+}
+
+.auth-intro::after {
+  content: "";
+  width: 26rem;
+  height: 26rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  position: absolute;
+  right: -11rem;
+  bottom: -9rem;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  width: fit-content;
+  color: inherit;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-style: italic;
+}
+
+.intro-copy {
+  max-width: 34rem;
+  padding: 5rem 0;
+  position: relative;
+  z-index: 1;
+}
+
+.eyebrow {
+  color: var(--color-accent-strong);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.auth-intro .eyebrow {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.intro-copy h1 {
+  max-width: 31rem;
+  margin: 1.2rem 0;
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 4.2vw, 4.5rem);
+  font-weight: 400;
+  line-height: 1.04;
+}
+
+.intro-copy > p:last-child {
+  max-width: 25rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.7;
+}
+
+.intro-foot {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  position: relative;
+  z-index: 1;
+}
+
+.pulse-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: #ffd0a8;
+  box-shadow: 0 0 0 0.3rem rgba(255, 208, 168, 0.18);
+}
+
+.auth-panel {
+  display: grid;
+  place-items: center;
+  padding: 3rem clamp(1.5rem, 7vw, 8rem);
+}
+
+.auth-card {
+  width: min(100%, 28rem);
+}
+
+.auth-heading {
+  margin-bottom: 2.2rem;
+}
+
+.auth-heading h2 {
+  margin: 0.75rem 0 0.6rem;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3vw, 2.8rem);
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+.auth-heading > p:last-child {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
+.auth-form {
+  display: grid;
+  gap: 1.2rem;
+}
+
+.auth-form > label {
+  display: grid;
+  gap: 0.5rem;
+  color: var(--color-text-muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"] {
+  width: 100%;
+  padding: 0.85rem 0.95rem;
+  border: 1px solid var(--color-border);
+  border-radius: 0.35rem;
+  outline: none;
+  background: var(--color-surface);
+  color: var(--color-text);
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+input::placeholder {
+  color: var(--color-text-muted);
+  opacity: 0.7;
+}
+
+input:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 0.25rem var(--color-focus);
+}
+
+.form-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: -0.25rem;
+  font-size: 0.76rem;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--color-text-muted);
+}
+
+.checkbox-label input {
+  accent-color: var(--color-accent);
+}
+
+.auth-form button {
+  margin-top: 0.35rem;
+  padding: 0.9rem 1rem;
+  border: 0;
+  border-radius: 0.35rem;
+  background: var(--color-accent);
+  color: #fff;
+  cursor: pointer;
+  font-weight: 700;
+  transition:
+    background 160ms ease,
+    transform 160ms ease;
+}
+
+.auth-form button:hover {
+  background: var(--color-accent-strong);
+  transform: translateY(-1px);
+}
+
+.auth-switch,
+.partner-switch {
+  color: var(--color-text-muted);
+  text-align: center;
+  font-size: 0.8rem;
+}
+
+.auth-switch {
+  margin-top: 1.5rem;
+}
+
+.auth-switch a,
+.partner-switch a {
+  font-weight: 700;
+}
+
+.partner-switch {
+  display: flex;
+  justify-content: center;
+  gap: 0.3rem;
+  margin-top: 4.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--color-border);
+}
+
+@media (max-width: 760px) {
+  .auth-shell {
+    display: block;
+  }
+
+  .top-nav {
+    min-height: 4rem;
+    padding: 0.7rem 1rem;
+  }
+
+  .nav-actions {
+    gap: 0;
+  }
+
+  .nav-link,
+  .theme-toggle {
+    padding: 0.45rem 0.5rem;
+    font-size: 0.7rem;
+  }
+
+  .theme-toggle {
+    margin-left: 0.2rem;
+  }
+
+  .auth-intro {
+    min-height: 19rem;
+    padding: 1.5rem;
+  }
+
+  .intro-copy {
+    padding: 3rem 0 1rem;
+  }
+
+  .intro-copy h1 {
+    max-width: 30rem;
+    font-size: clamp(2.2rem, 10vw, 3.3rem);
+  }
+
+  .intro-copy > p:last-child,
+  .intro-foot {
+    display: none;
+  }
+
+  .auth-panel {
+    padding: 3rem 1.5rem 2rem;
+  }
+
+  .partner-switch {
+    margin-top: 3rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+  }
+}
