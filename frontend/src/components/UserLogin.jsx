@@ -1,13 +1,51 @@
+import { useState } from "react";
 import AuthLayout, { AuthHeading, AuthSwitch } from "./AuthLayout";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function UserLogin() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    // eslint-disable-next-line no-unused-vars
+    const response = await axios
+      .post(
+        "http://localhost:3000/api/auth/user/login",
+        {
+          email,
+          password,
+        },
+        {
+          withCredentials: true,
+        },
+      )
+      .then((res) => {
+        console.log(res.data);
+        navigate("/");
+      })
+      .catch((err) => {
+        console.log("There was an error while loginning in", err);
+      });
+  }
+
   return (
     <AuthLayout accountType="user">
       <AuthHeading />
-      <form className="auth-form">
+      <form className="auth-form" onSubmit={handleSubmit}>
         <label>
           Email address
-          <input type="email" name="email" placeholder="you@example.com" />
+          <input
+            type="email"
+            name="email"
+            placeholder="you@example.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
         </label>
         <label>
           Password
@@ -15,6 +53,8 @@ function UserLogin() {
             type="password"
             name="password"
             placeholder="Enter your password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
         </label>
         <div className="form-meta">

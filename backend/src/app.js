@@ -4,11 +4,20 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 const authRoutes = require("./routes/auth.routes");
 const foodRoutes = require("./routes/food.routes");
+const cors = require("cors");
 
 const app = express();
 
 // Midleware : helps to parse json from req.body.
 app.use(express.json());
+
+//CORS
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  }),
+);
 
 // Midleware : helps to parse cookies
 app.use(cookieParser());

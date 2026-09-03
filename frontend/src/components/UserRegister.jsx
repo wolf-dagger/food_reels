@@ -1,21 +1,39 @@
 import { useState } from "react";
 import AuthLayout, { AuthHeading, AuthSwitch } from "./AuthLayout";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function UserRegister() {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e) => {
+  const navigate = useNavigate();
+
+  async function handleSubmit(e) {
     e.preventDefault();
 
-    axios.post("http://localhost:3000/api/auth/user/register", {
-      fullName,
-      email,
-      password,
-    });
-  };
+    // eslint-disable-next-line no-unused-vars
+    const response = await axios
+      .post(
+        "http://localhost:3000/api/auth/user/register",
+        {
+          fullName,
+          email,
+          password,
+        },
+        {
+          withCredentials: true,
+        },
+      )
+      .then((res) => {
+        console.log(res.data);
+        navigate("/");
+      })
+      .catch((err) => {
+        console.log("There was an error while registering", err);
+      });
+  }
 
   return (
     <AuthLayout accountType="user">
