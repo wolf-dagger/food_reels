@@ -1,3 +1,4 @@
+@import "tailwindcss";
 @import "./theme.css";
 
 * {
@@ -105,10 +106,10 @@ body {
   display: grid;
   gap: 0.9rem;
   max-width: 31rem;
-  padding: 1.5rem clamp(1.25rem, 5vw, 3rem) 2.25rem;
+  padding: 1.5rem clamp(1.25rem, 5vw, 3rem) 1.25rem;
   position: absolute;
   right: 0;
-  bottom: 0;
+  bottom: 4.75rem;
   left: 0;
   z-index: 2;
 }
@@ -165,6 +166,305 @@ body {
   font-size: 0.7rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+
+.reel-actions {
+  display: grid;
+  justify-items: center;
+  gap: 0.8rem;
+  position: absolute;
+  right: clamp(0.65rem, 2.5vw, 1.25rem);
+  bottom: 7.8rem;
+  z-index: 2;
+}
+
+.reel-action {
+  display: grid;
+  justify-items: center;
+  gap: 0.35rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.92);
+  cursor: pointer;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-shadow: 0 1px 0.5rem rgba(0, 0, 0, 0.45);
+  transition:
+    color 160ms ease,
+    transform 160ms ease;
+}
+
+.reel-action:hover,
+.reel-action.is-active {
+  color: #ffad70;
+  transform: translateY(-2px);
+}
+
+.reel-share {
+  margin-top: 0.2rem;
+}
+
+.bottom-nav {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: min(calc(100% - 1rem), 40rem);
+  padding: 0.65rem 1.2rem 0.8rem;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 1.25rem;
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 0.75rem 2rem rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(18px) saturate(145%);
+  -webkit-backdrop-filter: blur(18px) saturate(145%);
+  position: fixed;
+  right: auto;
+  bottom: 0.7rem;
+  left: 50%;
+  z-index: 10;
+  transform: translateX(-50%);
+}
+
+.bottom-nav-link {
+  display: grid;
+  justify-items: center;
+  gap: 0.25rem;
+  color: var(--color-text-muted);
+  font-size: 0.68rem;
+  font-weight: 700;
+  transition:
+    color 160ms ease,
+    transform 160ms ease;
+}
+
+.bottom-nav-link:hover,
+.bottom-nav-link.active {
+  color: var(--color-accent-strong);
+  transform: translateY(-1px);
+}
+
+.account-page {
+  min-height: 100vh;
+  padding-bottom: 5.5rem;
+  background: var(--color-bg);
+}
+
+.account-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: min(100%, 48rem);
+  margin: 0 auto;
+  padding: 1.2rem clamp(1rem, 4vw, 2rem);
+}
+
+.account-header-title {
+  color: var(--color-text-muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.icon-button {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  background: var(--color-surface);
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.icon-button:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent-strong);
+}
+
+.account-content,
+.saved-content {
+  width: min(100%, 35rem);
+  margin: 0 auto;
+  padding: 2rem clamp(1.25rem, 6vw, 2.5rem);
+}
+
+.profile-hero {
+  display: grid;
+  justify-items: center;
+  text-align: center;
+}
+
+.user-avatar {
+  display: grid;
+  place-items: center;
+  width: 6.5rem;
+  height: 6.5rem;
+  border: 2px solid var(--color-accent);
+  border-radius: 50%;
+  background: var(--color-accent-soft);
+  color: var(--color-accent-strong);
+  font-family: var(--font-display);
+  font-size: 2rem;
+}
+
+.avatar-edit {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  margin: -1.1rem 0 1.25rem 4.9rem;
+  border: 2px solid var(--color-bg);
+  border-radius: 50%;
+  background: var(--color-accent);
+  color: #fff;
+  cursor: pointer;
+}
+
+.profile-hero h1,
+.saved-heading h1 {
+  margin: 0.55rem 0;
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 7vw, 3.5rem);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.profile-intro {
+  max-width: 18rem;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.profile-form {
+  display: grid;
+  gap: 1.2rem;
+  margin-top: 2.5rem;
+}
+
+.profile-form label {
+  display: grid;
+  gap: 0.5rem;
+  color: var(--color-text-muted);
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.primary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.9rem 1rem;
+  border: 0;
+  border-radius: 0.35rem;
+  background: var(--color-accent);
+  color: #fff;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.primary-button:hover {
+  background: var(--color-accent-strong);
+}
+
+.form-status {
+  color: var(--color-accent-strong);
+  font-size: 0.78rem;
+  text-align: center;
+}
+
+.saved-content {
+  width: min(100%, 48rem);
+}
+
+.saved-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.saved-count {
+  padding-bottom: 0.4rem;
+  color: var(--color-accent-strong);
+  font-size: 0.78rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.saved-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.saved-card {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.saved-card-art {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1 / 1.12;
+  border-radius: 0.65rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.saved-card strong,
+.saved-card span {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.saved-card strong {
+  font-size: 0.9rem;
+}
+
+.saved-card span {
+  margin-top: 0.25rem;
+  color: var(--color-text-muted);
+  font-size: 0.72rem;
+}
+
+.empty-saved {
+  display: grid;
+  justify-items: center;
+  gap: 0.8rem;
+  padding: 4rem 1.5rem;
+  border-top: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+.empty-saved svg {
+  color: var(--color-accent-strong);
+}
+
+.empty-saved h2 {
+  color: var(--color-text);
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+.empty-saved p {
+  max-width: 18rem;
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.text-link {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 700;
 }
 
 .profile-page {
